@@ -1,3 +1,6 @@
+![alt text](PokerBots/images/pokerbots_logo.jpg)
+
+
 # PokerBots
 
 This library is designed for testing bots in Heads-Up Poker (1-vs-1 tournaments).
