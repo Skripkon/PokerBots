@@ -1,5 +1,5 @@
 import random
-from .BasePlayer import BasePlayer
+from PokerBots.players.BasePlayer import BasePlayer
 
 
 class RandomPlayer(BasePlayer):
@@ -12,7 +12,7 @@ class RandomPlayer(BasePlayer):
         Randomly selects an action from the valid actions and determines the bet amount if needed.
         """
         valid_actions = ["fold"]
-        for action in ["call", "check"]:
+        for action in ("call", "check"):
             if state["action"][action] != -1:
                 valid_actions.append(action)
 
@@ -21,10 +21,10 @@ class RandomPlayer(BasePlayer):
 
         action = random.choice(valid_actions)
 
-        if action in ["fold", "check"]:
+        if action in {"fold", "check"}:
             return action, 0
 
-        elif action == "call":
+        if action == "call":
             bet = state["action"][action]
             return action, bet
 

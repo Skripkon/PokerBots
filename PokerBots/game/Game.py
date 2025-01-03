@@ -1,5 +1,5 @@
 from treys import Deck, Card, Evaluator
-from ..players.BasePlayer import BasePlayer
+from PokerBots.players.BasePlayer import BasePlayer
 
 
 class Game:
@@ -123,7 +123,7 @@ class Game:
 
     def __play_street(self):
         while self.players[0].pot != self.players[1].pot and self.players[0].stack > 0 and self.players[1].stack > 0:
-            for i in [1 - self.dealer, self.dealer]:
+            for i in (1 - self.dealer, self.dealer):
                 enemy_pot = self.players[1 - i].pot
                 enemy_bet = enemy_pot - self.players[i].pot
                 valid_actions = self.__determine_valid_actions(

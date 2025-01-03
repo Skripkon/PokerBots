@@ -1,5 +1,6 @@
-from PokerBots import Game
-from PokerBots import RandomPlayer
+from PokerBots.game.Game import Game
+from PokerBots.players.RandomPlayer import RandomPlayer
+
 
 if __name__ == "__main__":
     game = Game(small_blind=10)
@@ -11,7 +12,7 @@ if __name__ == "__main__":
 
     for r in range(100):
         print("======================================================")
-        res = game.play_round()
+        game.play_round()
         print(f"Igor stack: {player1.stack}")
         print(f"Ivan stack: {player2.stack}")
 

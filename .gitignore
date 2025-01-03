@@ -1,5 +1,6 @@
-# Virtual environment
+# Virtual environments
 .venv
+.venv_wsl
 
 # Python files
 __pycache__
