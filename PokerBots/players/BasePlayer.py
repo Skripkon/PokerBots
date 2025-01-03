@@ -13,8 +13,8 @@ class BasePlayer:
         name (str): The name of the player.
 
     Methods:
-        play(valid_actions: dict) -> tuple[str, float]:
-            Determines the player's action based on the available valid actions. This method
+        play(state: dict) -> tuple[str, float]:
+            Determines the player's action based on the current state of the game. This method
             must be implemented by subclasses.
     """
 
@@ -32,22 +32,30 @@ class BasePlayer:
         self.pot: float = 0.0
         self.name: str = name
 
-    def play(self, valid_actions: dict) -> tuple[str, float]:
+    def play(self, state: dict) -> tuple[str, float]:
         """
         Determines the player's action based on the available valid actions.
 
         Args:
-            valid_actions (dict): A dictionary containing the actions the player can take.
-                Format:
-                    valid_actions["fold"] = 0 (indicates folding is an option)
-                    valid_actions["check"] = 0 (indicates checking is an option)
-                    valid_actions["call"] = <amount> (indicates calling is an option with a specified amount)
-                    valid_actions["raise"] = {"min": <min_amount>, "max": <max_amount>}
-                        (indicates raising is an option with specified minimum and maximum limits)
-
+            state (dict): A dictionary containing the actions the player can take.
+                Format (-1 indicates that the move is invalid):
+                    state = {
+                        "action":
+                            {
+                                "fold":  -1,
+                                "call":  -1,
+                                "check": -1,
+                                "raise":
+                                        {
+                                            "min": -1,
+                                            "max": -1
+                                        }
+                            }
+                        "board": list[Card]
+                    }
         Returns:
             tuple[str, float]: A tuple containing the chosen action as a string and the amount of chips
-            associated with the action (if applicable).
+            associated with the action.
 
         Raises:
             NotImplementedError: If the method is not implemented in a subclass.
