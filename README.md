@@ -1,6 +1,12 @@
-![alt text](PokerBots/images/pokerbots_logo.jpg)
+<h1 align="center">
+<img src="https://github.com/Skripkon/PokerBots/blob/main/PokerBots/images/pokerbots_logo.jpg?raw=true">
+</h1><br>
 
-**PokerBots** is designed for testing bots in Heads-Up Poker (1-vs-1 tournaments).
+<a href="https://pypi.org/project/PokerBots" target="_blank">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
+</a>
+
+### PokerBots is designed for testing bots in Heads-Up Poker (1-vs-1 tournaments)
 
 ## 1. Install the library
 ```bash

@@ -12,3 +12,6 @@ build
 dist
 PokerBots.egg-info
 .pypirc
+
+# Notes concerning development
+for_developers.txt
