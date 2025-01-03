@@ -1,9 +1,6 @@
 ![alt text](PokerBots/images/pokerbots_logo.jpg)
 
-
-# PokerBots
-
-This library is designed for testing bots in Heads-Up Poker (1-vs-1 tournaments).
+**PokerBots** is designed for testing bots in Heads-Up Poker (1-vs-1 tournaments).
 
 ## 1. Install the library
 ```bash
@@ -19,21 +16,15 @@ from PokerBots import Game, RandomPlayer
 game = Game(small_blind=10)
 
 # Create two random players
-player1 = RandomPlayer(stack=10_000, name="Igor")
+player1 = RandomPlayer(stack=5_000, name="Igor")
 player2 = RandomPlayer(stack=10_000, name="Ivan")
 
 # Add these players to the table just created
 game.set_player_1(player=player1)
 game.set_player_2(player=player2)
 
-# Run 100 rounds (or until one of them will go bankrupt)
-for r in range(100):
-    res = game.play_round()
-    print(f"Igor stack: {player1.stack}")
-    print(f"Ivan stack: {player2.stack}")
-
-    if player1.stack == 0 or player2.stack == 0:
-        break
+# Run 1 round
+game.play_round()
 ```
 
 If you want to see a detailed output during the games, then set ```verbose=True```:
@@ -58,9 +49,12 @@ class NewBot(BasePlayer):
         """
         Implement a strategy to choose an action.
         """
+        pass
 ```
 
-Note, that ```state``` has the following format:
+> [!IMPORTANT]
+> ```state``` has the following format:
+
 ```
     state = {
         "action":
@@ -78,4 +72,26 @@ Note, that ```state``` has the following format:
     }
 ```
 
--1 indicates that the action is invalid. Otherwise, it's an amount of chips. Fold is always valid.
+> [!NOTE]
+> Value **-1** indicates that the action is invalid. Otherwise, it's an amount of chips. Fold is always valid.
+
+**Now you can use this bot:**
+
+```python
+
+from PokerBots import Game, RandomPlayer
+
+# Create a new table
+game = Game(small_blind=10)
+
+# Create two random players
+random_bot = RandomPlayer(stack=5_000, name="Igor")
+my_bot = NewBot(stack=10_000, name="Ivan")
+
+# Add these players to the table just created
+game.set_player_1(player=random_bot)
+game.set_player_2(player=my_bot)
+
+# Run 1 round
+game.play_round()
+```
