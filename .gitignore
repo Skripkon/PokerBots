@@ -5,13 +5,11 @@
 # Python files
 __pycache__
 
-
 # PyPI package
 setup.py
 build
 dist
 PokerBots.egg-info
-.pypirc
 
 # Notes concerning development
 for_developers.txt
