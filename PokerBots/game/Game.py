@@ -3,14 +3,14 @@ from PokerBots.players.BasePlayer import BasePlayer
 
 class Game:
 
-    def __init__ (self, stack: float = 30_000, players: list[BasePlayer] = None):
+    def __init__ (self, initial_stack: float = 30_000, players: list[BasePlayer] = None):
         self.players = players
         self.n_players = len(players)
-        self.stacks = [stack] * self.n_players
+        self.stacks = [initial_stack] * self.n_players
 
         self.state = None
 
-    def play_round(self):
+    def play_round(self, verbose: bool = True):
         self.state = NoLimitTexasHoldem.create_state(
             (
                 Automation.ANTE_POSTING,
@@ -47,16 +47,19 @@ class Game:
         # River
         self.state.burn_card()
         self.state.deal_board(1)
-        self.__play_street()
+        self.__play_street(verbose=True)
 
         # Update stacks
         self.stacks = self.state.stacks
-    
+
         # Remove players with zero stack
-        self.__remove_bankrupt_players()
+        self.__remove_bankrupt_players(verbose=verbose)
+
+        if verbose:
+            self.__log_winner()
 
         # Check if Game is over
-        game_is_over: bool = self.__check_if_game_is_over()
+        game_is_over: bool = self.__check_if_game_is_over(verbose=verbose)
         return game_is_over
 
     def __deal_cards(self):
@@ -64,21 +67,35 @@ class Game:
         for _ in range(self.state.player_count):
             self.state.deal_hole(2)
 
-    def __play_street(self):
+    def __play_street(self, verbose: bool = True):
         while self.state.actor_index is not None:
             current_player_idx = self.state.actor_index
             valid_actions = self.__get_valid_actions()
             action, amount = self.players[current_player_idx].play(valid_actions=valid_actions, state=self.state)
 
-            match action:
-                case "fold":
-                    self.state.fold()
-                case "check_or_call":
-                    self.state.check_or_call()
-                case "complete_bet_or_raise_to":
-                    self.state.complete_bet_or_raise_to(amount=amount)
-                case _:
-                    raise ValueError(f"Unknown action: {action}. Valid actions are ['fold', 'check_or_call', 'complete_bet_or_raise_to']")
+            if verbose:
+                match action:
+                    case "fold":
+                        self.state.fold()
+                        print(f"INFO: Player {self.players[current_player_idx].name} folds.")
+                    case "check_or_call":
+                        self.state.check_or_call()
+                        print(f"INFO: Player {self.players[current_player_idx].name} checks/calls.")
+                    case "complete_bet_or_raise_to":
+                        self.state.complete_bet_or_raise_to(amount=amount)
+                        print(f"INFO: Player {self.players[current_player_idx].name} raises to {amount}")
+                    case _:
+                        raise ValueError(f"Unknown action: {action}. Valid actions are ['fold', 'check_or_call', 'complete_bet_or_raise_to']")
+            else:
+                match action:
+                    case "fold":
+                        self.state.fold()
+                    case "check_or_call":
+                        self.state.check_or_call()
+                    case "complete_bet_or_raise_to":
+                        self.state.complete_bet_or_raise_to(amount=amount)
+                    case _:
+                        raise ValueError(f"Unknown action: {action}. Valid actions are ['fold', 'check_or_call', 'complete_bet_or_raise_to']")
 
     def __get_valid_actions(self):
         valid_actions = {"fold": 0}
@@ -90,17 +107,24 @@ class Game:
 
         return valid_actions
     
-    def __remove_bankrupt_players(self):
+    def __remove_bankrupt_players(self, verbose: bool = True):
         for idx, stack in enumerate(self.stacks):
             if stack == 0:
-                print(f"INFO: Player {self.players[idx].name} lost his stack.")
+                if verbose:
+                    print(f"INFO: Player {self.players[idx].name} lost his stack.")
                 self.n_players -= 1
                 self.stacks.pop(idx)
                 self.players.pop(idx)
 
-    def __check_if_game_is_over(self):
+    def __check_if_game_is_over(self, verbose: bool = True):
         if len(self.stacks) == 1:
-            print(f"INFO: Player {self.players[0].name} won the Tournament.")
+            if verbose:
+                print(f"INFO: Player {self.players[0].name} won the Tournament.")
             return True
         
         return False
+    
+    def __log_winner(self):
+        for idx in range(self.n_players):
+            if self.state.can_win_now(idx):
+                print(f"INFO: Player {self.players[idx].name} won.")

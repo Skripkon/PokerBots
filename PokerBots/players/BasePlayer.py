@@ -1,3 +1,5 @@
+from pokerkit import State
+
 class BasePlayer:
     """
     Represents a base class for a poker player in a game.
@@ -6,7 +8,7 @@ class BasePlayer:
         name (str): The name of the player.
 
     Methods:
-        play(state: dict) -> tuple[str, float]:
+        play(self, valid_actions, state: State) -> tuple[str, float]:
             Determines the player's action based on the current state of the game. This method
             must be implemented by subclasses.
     """
@@ -14,7 +16,7 @@ class BasePlayer:
     def __init__(self, name: str = "NPC"):
         self.name = name
 
-    def play(self, valid_actions: dict[str], state) -> tuple[str, float]:
+    def play(self, valid_actions: dict[str], state: State) -> tuple[str, float]:
         """
         Determines the player's action based on the available valid actions.
         """
