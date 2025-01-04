@@ -34,23 +34,29 @@ class Game:
         # Preflop
         self.__play_street(verbose=verbose)
 
+        # Flop
+        self.__try_to_burn_and_deal_cards(n_cards=3)
+
         if self.state.actor_index is not None:
-            # Flop
-            self.state.burn_card()
-            self.state.deal_board(3)
             self.__play_street(verbose=verbose)
 
+            # Tern
+            self.__try_to_burn_and_deal_cards(n_cards=1)
             if self.state.actor_index is not None:
-                # Tern
-                self.state.burn_card()
-                self.state.deal_board(1)
                 self.__play_street(verbose=verbose)
 
+                # River
+                self.__try_to_burn_and_deal_cards(n_cards=1)
                 if self.state.actor_index is not None:
-                    # River
-                    self.state.burn_card()
-                    self.state.deal_board(1)
                     self.__play_street(verbose=verbose)
+            else:
+                # River
+                self.__try_to_burn_and_deal_cards(n_cards=1)
+        else:
+            # Tern
+            self.__try_to_burn_and_deal_cards(n_cards=1)
+            # River
+            self.__try_to_burn_and_deal_cards(n_cards=1)
 
         # Update stacks
         self.stacks = self.state.stacks
@@ -109,15 +115,20 @@ class Game:
             valid_actions["complete_bet_or_raise_to"] = (self.state.min_completion_betting_or_raising_to_amount, self.state.max_completion_betting_or_raising_to_amount)
 
         return valid_actions
-    
+
     def __remove_bankrupt_players(self, verbose: bool = True):
-        for idx, stack in enumerate(self.stacks):
-            if stack == 0:
-                if verbose:
+        if verbose:
+            for idx, stack in enumerate(self.stacks):
+                if stack == 0:
                     print(f"INFO: Player {self.players[idx].name} lost his stack.")
-                self.n_players -= 1
-                self.stacks.pop(idx)
-                self.players.pop(idx)
+        
+        self.stacks, self.players = zip(
+            *[(stack, player) for stack, player in zip(self.stacks, self.players) if stack > 0]
+        )
+        self.stacks = list(self.stacks)
+        self.players = list(self.players)
+        self.n_players = len(self.players)
+
 
     def __check_if_game_is_over(self, verbose: bool = True):
         if len(self.stacks) == 1:
@@ -131,3 +142,8 @@ class Game:
         for idx in range(self.n_players):
             if self.state.can_win_now(idx):
                 print(f"INFO: Player {self.players[idx].name} won.")
+
+    def __try_to_burn_and_deal_cards(self, n_cards: int = 1):
+        if self.state.can_burn_card():
+            self.state.burn_card()
+            self.state.deal_board(n_cards)
