@@ -3,7 +3,7 @@
 </h1><br>
 
 <a href="https://pypi.org/project/PokerBots" target="_blank">
-    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
+    <img src="PokerBots/images/python_versions.png" alt="Supported Python versions">
 </a>
 
 # Test you bots in no-limit hold'em tournaments!
