@@ -26,13 +26,13 @@ player3 = CallingPlayer(name="Maria")
 game = Game(players=[player1, player2, player3], initial_stack=30_000)
 
 # See current stacks:
-print(game.state.stacks)
+print(game.state.stacks)  # [30_000, 30_000, 30_000]
 
 # Run 1 round
 game.play_round(verbose=False)
 
 # See stacks after one round:
-print(game.state.stacks)
+print(game.state.stacks)  # [27500, 35000, 27500]
 ```
 
 > [!TIP]

@@ -32,22 +32,22 @@ class Game:
         self.__deal_cards()
 
         # Preflop
-        self.__play_street()
+        self.__play_street(verbose=verbose)
 
         # Flop
         self.state.burn_card()
         self.state.deal_board(3)
-        self.__play_street()
+        self.__play_street(verbose=verbose)
 
         # Tern
         self.state.burn_card()
         self.state.deal_board(1)
-        self.__play_street()
+        self.__play_street(verbose=verbose)
 
         # River
         self.state.burn_card()
         self.state.deal_board(1)
-        self.__play_street(verbose=True)
+        self.__play_street(verbose=verbose)
 
         # Update stacks
         self.stacks = self.state.stacks
