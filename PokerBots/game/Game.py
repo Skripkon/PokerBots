@@ -34,20 +34,23 @@ class Game:
         # Preflop
         self.__play_street(verbose=verbose)
 
-        # Flop
-        self.state.burn_card()
-        self.state.deal_board(3)
-        self.__play_street(verbose=verbose)
+        if self.state.actor_index is not None:
+            # Flop
+            self.state.burn_card()
+            self.state.deal_board(3)
+            self.__play_street(verbose=verbose)
 
-        # Tern
-        self.state.burn_card()
-        self.state.deal_board(1)
-        self.__play_street(verbose=verbose)
+            if self.state.actor_index is not None:
+                # Tern
+                self.state.burn_card()
+                self.state.deal_board(1)
+                self.__play_street(verbose=verbose)
 
-        # River
-        self.state.burn_card()
-        self.state.deal_board(1)
-        self.__play_street(verbose=verbose)
+                if self.state.actor_index is not None:
+                    # River
+                    self.state.burn_card()
+                    self.state.deal_board(1)
+                    self.__play_street(verbose=verbose)
 
         # Update stacks
         self.stacks = self.state.stacks

@@ -2,11 +2,14 @@
 <img src="https://github.com/Skripkon/PokerBots/blob/main/PokerBots/images/pokerbots_logo.jpg?raw=true">
 </h1><br>
 
-<div style="text-align: left;">
-    <img src="PokerBots/images/python_versions.png" width="300" alt="Supported Python versions">
+<div style="display: flex; align-items: center; gap: 30px;">
+    <img src="https://img.shields.io/pypi/pyversions/pokerkit" height="50" alt="Supported Python versions">
+    <a href="https://pypi.org/project/PokerBots/" target="_blank">
+        <img src="https://static.pepy.tech/badge/pokerbots" height="50" alt="PyPI Downloads">
+    </a>
 </div>
 
-# Test you bots in no-limit hold'em tournaments!
+# Test your bots in no-limit hold'em tournaments!
 
 ## 1. Install the library
 ```bash
@@ -16,12 +19,12 @@ $ pip install PokerBots
 ## 2. Explore a simple example
 ```python
 
-from PokerBots import Game, CallingPlayer
+from PokerBots import Game, CallingPlayer, RandomPlayer
 
 # Define three vanila players
 player1 = CallingPlayer(name="Igor")
 player2 = CallingPlayer(name="Ivan")
-player3 = CallingPlayer(name="Maria")
+player3 = RandomPlayer(name="Maria")
 
 game = Game(players=[player1, player2, player3], initial_stack=30_000)
 
