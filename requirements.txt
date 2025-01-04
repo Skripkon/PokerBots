@@ -1,1 +1,2 @@
 treys==0.1.8
+pokerkit==0.5.4

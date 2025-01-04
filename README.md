@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
 </a>
 
-### PokerBots is designed for testing bots in Heads-Up Poker (1-vs-1 tournaments)
+### PokerBots is designed for testing bots in Hold'em non limited tournaments.
 
 ## 1. Install the library
 ```bash
@@ -16,28 +16,21 @@ $ pip install PokerBots
 ## 2. Explore a simple example
 ```python
 
-from PokerBots import Game, RandomPlayer
+from PokerBots import Game, CallingPlayer
 
-# Create a new table
-game = Game(small_blind=10)
 
-# Create two random players
-player1 = RandomPlayer(stack=5_000, name="Igor")
-player2 = RandomPlayer(stack=10_000, name="Ivan")
+# Define three vanila players
+player1 = CallingPlayer(name="Igor")
+player2 = CallingPlayer(name="Ivan")
+player3 = CallingPlayer(name="Ivan")
 
-# Add these players to the table just created
-game.set_player_1(player=player1)
-game.set_player_2(player=player2)
+game = Game(players=[player1, player2, player3], stack=30_000, n_players=n_players)
 
 # Run 1 round
 game.play_round()
 ```
 
 If you want to see a detailed output during the games, then set ```verbose=True```:
-
-```python
-game = Game(small_blind=10, verbose=True)
-```
 
 ## 3. Create Your Own Bot
 
@@ -51,7 +44,7 @@ from PokerBots import BasePlayer
 
 class NewBot(BasePlayer):
 
-    def play(self, state: dict) -> tuple[str, float]:
+    def play(self, valid_actions: dict[str], state) -> tuple[str, float]:
         """
         Implement a strategy to choose an action.
         """
