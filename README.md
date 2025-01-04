@@ -2,9 +2,9 @@
 <img src="https://github.com/Skripkon/PokerBots/blob/main/PokerBots/images/pokerbots_logo.jpg?raw=true">
 </h1><br>
 
-<a href="https://pypi.org/project/PokerBots" target="_blank">
-    <img src="PokerBots/images/python_versions.png" alt="Supported Python versions">
-</a>
+<div style="text-align: left;">
+    <img src="PokerBots/images/python_versions.png" width="300" alt="Supported Python versions">
+</div>
 
 # Test you bots in no-limit hold'em tournaments!
 
