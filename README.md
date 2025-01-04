@@ -37,12 +37,12 @@ If you want to see a detailed output during the games, then set ```verbose=True`
 Creating new bots is a straightforward process:
 
 - Inherit from the `BasePlayer` class.
-- Override the `play` method: it must return an action and the amount of chips to bet, given the state of the game.
+- Override the `play` method: it must return an action and the amount of chips to bet, given the state of the game and valid actions.
 
 ```python
 from PokerBots import BasePlayer
 
-class NewBot(BasePlayer):
+class MyOwnBot(BasePlayer):
 
     def play(self, valid_actions: dict[str], state) -> tuple[str, float]:
         """
@@ -51,45 +51,18 @@ class NewBot(BasePlayer):
         pass
 ```
 
-> [!IMPORTANT]
-> ```state``` has the following format:
-
-```
-    state = {
-        "action":
-            {
-                "fold":   0,
-                "call":  20,
-                "check": -1,
-                "raise":
-                        {
-                            "min": 20,
-                            "max": 100
-                        }
-            }
-        "board": list[Card]
-    }
-```
-
-> [!NOTE]
-> Value **-1** indicates that the action is invalid. Otherwise, it's an amount of chips. Fold is always valid.
-
 **Now you can use this bot:**
 
 ```python
 
-from PokerBots import Game, RandomPlayer
+from PokerBots import Game
 
-# Create a new table
-game = Game(small_blind=10)
+# Define two vanila players and one of your own
+player1 = MyOwnBot(name="Igor")
+player2 = CallingBot(name="Ivan")
+player3 = CallingBot(name="Ivan")
 
-# Create two random players
-random_bot = RandomPlayer(stack=5_000, name="Igor")
-my_bot = NewBot(stack=10_000, name="Ivan")
-
-# Add these players to the table just created
-game.set_player_1(player=random_bot)
-game.set_player_2(player=my_bot)
+game = Game(players=[player1, player2, player3], stack=30_000, n_players=n_players)
 
 # Run 1 round
 game.play_round()
