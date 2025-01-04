@@ -3,9 +3,9 @@ from PokerBots.players.BasePlayer import BasePlayer
 
 class Game:
 
-    def __init__ (self, n_players: int = 6, stack: float = 100_000, players: list[BasePlayer] = None):
+    def __init__ (self, stack: float = 30_000, players: list[BasePlayer] = None):
         self.players = players
-        self.n_players = n_players
+        self.n_players = len(players)
         self.stacks = [stack] * self.n_players
 
         self.state = None
