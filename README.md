@@ -2,15 +2,15 @@
 <img src="https://github.com/Skripkon/PokerBots/blob/main/PokerBots/images/pokerbots_logo.jpg?raw=true">
 </h1><br>
 
-<div style="display: flex; align-items: center; gap: 30px;">
+<div style="display: flex; align-items: center; gap: 10px;">
     <a href="https://pypi.org/project/PokerBots/" target="_blank">
-        <img src="https://img.shields.io/pypi/pyversions/pokerkit" height="50" alt="Supported Python versions">
+        <img src="https://img.shields.io/pypi/pyversions/pokerkit" height="40" alt="Supported Python versions">
     </a>
     <a href="https://pepy.tech/projects/pokerbots" target="_blank">
-        <img src="https://static.pepy.tech/badge/pokerbots" height="50" alt="PyPI Downloads">
+        <img src="https://static.pepy.tech/badge/pokerbots" height="40" alt="PyPI Downloads">
     </a>
     <a href="https://github.com/Skripkon/PokerBots/blob/main/LICENSE" target="_blank">
-        <img src="https://raw.githubusercontent.com/Skripkon/PokerBots/27bba4cc02db1a785a9c6623f807f7e138ebbbf7/PokerBots/images/MIT_license.svg" height="50" alt="MIT License">
+        <img src="https://raw.githubusercontent.com/Skripkon/PokerBots/27bba4cc02db1a785a9c6623f807f7e138ebbbf7/PokerBots/images/MIT_license.svg" height="40" alt="MIT License">
     </a>
 </div>
 
@@ -34,13 +34,13 @@ player3 = RandomPlayer(name="Maria")
 game = Game(players=[player1, player2, player3], initial_stack=30_000)
 
 # See current stacks:
-print(game.state.stacks)  # [30_000, 30_000, 30_000]
+print(game.stacks)  # [30_000, 30_000, 30_000]
 
 # Run 1 round
 game.play_round(verbose=False)
 
 # See stacks after one round:
-print(game.state.stacks)  # [27500, 35000, 27500]
+print(game.stacks)  # [27500, 35000, 27500]
 ```
 
 > [!TIP]
