@@ -6,10 +6,6 @@
 __pycache__
 
 # PyPI package
-setup.py
 build
 dist
 PokerBots.egg-info
-
-# Notes concerning development
-for_developers.txt
