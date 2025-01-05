@@ -27,10 +27,10 @@ $ pip install PokerBots
 ## 2. Explore a simple example
 ```python
 
-from PokerBots import Game, CallingPlayer, RandomPlayer
+from PokerBots import Game, CallingPlayer, RandomPlayer, GamblingPlayer
 
 # Define three vanila players
-player1 = CallingPlayer(name="Igor")
+player1 = GamblingPlayer(name="Igor")
 player2 = CallingPlayer(name="Ivan")
 player3 = RandomPlayer(name="Maria")
 
@@ -92,7 +92,7 @@ state.board_cards
 Or, the player's hole cards:
 
 ```python
-state.hole_cards
+state.hole_cards[state.actor_index]
 ```
 
 ### All official bots can be found in ```PokerBots/players/```
