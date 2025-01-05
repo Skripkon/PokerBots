@@ -59,12 +59,12 @@ def create_random_players():
 
 
 # Test with calling players
-def test_multiple_game_simulations_with_calling_players(num_simulations=10, rounds=10):
+def test_multiple_game_simulations_with_calling_players(num_simulations=100, rounds=10):
     simulate_multiple_games(create_calling_players(), num_simulations, rounds, verbose=True)
     simulate_multiple_games(create_calling_players(), num_simulations, rounds, verbose=False)
 
 
 # Test with random players
-def test_multiple_game_simulations_with_random_players(num_simulations=10, rounds=10):
+def test_multiple_game_simulations_with_random_players(num_simulations=100, rounds=10):
     simulate_multiple_games(create_random_players(), num_simulations, rounds, verbose=True)
     simulate_multiple_games(create_random_players(), num_simulations, rounds, verbose=False)
