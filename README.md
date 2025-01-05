@@ -3,9 +3,14 @@
 </h1><br>
 
 <div style="display: flex; align-items: center; gap: 30px;">
-    <img src="https://img.shields.io/pypi/pyversions/pokerkit" height="50" alt="Supported Python versions">
     <a href="https://pypi.org/project/PokerBots/" target="_blank">
+        <img src="https://img.shields.io/pypi/pyversions/pokerkit" height="50" alt="Supported Python versions">
+    </a>
+    <a href="https://pepy.tech/projects/pokerbots" target="_blank">
         <img src="https://static.pepy.tech/badge/pokerbots" height="50" alt="PyPI Downloads">
+    </a>
+    <a href="https://github.com/Skripkon/PokerBots/blob/main/LICENSE" target="_blank">
+        <img src="https://raw.githubusercontent.com/Skripkon/PokerBots/27bba4cc02db1a785a9c6623f807f7e138ebbbf7/PokerBots/images/MIT_license.svg" height="50" alt="MIT License">
     </a>
 </div>
 
@@ -39,7 +44,7 @@ print(game.state.stacks)  # [27500, 35000, 27500]
 ```
 
 > [!TIP]
-> If you want to see a detailed output during the games, then set ```verbose=True```:
+> If you want to see a detailed output during the games, then set ```verbose=True```.
 
 ## 3. Create Your Own Bot
 
