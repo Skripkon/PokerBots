@@ -2,15 +2,18 @@
 <img src="https://github.com/Skripkon/PokerBots/blob/main/PokerBots/images/pokerbots_logo.jpg?raw=true">
 </h1><br>
 
-<div style="display: flex; align-items: center; gap: 10px;">
+<div style="display: flex; align-items: center; gap: 30px;">
     <a href="https://pypi.org/project/PokerBots/" target="_blank">
-        <img src="https://img.shields.io/pypi/pyversions/pokerkit" height="40" alt="Supported Python versions">
+        <img src="https://img.shields.io/pypi/pyversions/pokerkit" height="30" alt="Supported Python versions">
     </a>
     <a href="https://pepy.tech/projects/pokerbots" target="_blank">
-        <img src="https://static.pepy.tech/badge/pokerbots" height="40" alt="PyPI Downloads">
+        <img src="https://static.pepy.tech/badge/pokerbots" height="30" alt="PyPI Downloads">
     </a>
     <a href="https://github.com/Skripkon/PokerBots/blob/main/LICENSE" target="_blank">
-        <img src="https://raw.githubusercontent.com/Skripkon/PokerBots/27bba4cc02db1a785a9c6623f807f7e138ebbbf7/PokerBots/images/MIT_license.svg" height="40" alt="MIT License">
+        <img src="https://raw.githubusercontent.com/Skripkon/PokerBots/27bba4cc02db1a785a9c6623f807f7e138ebbbf7/PokerBots/images/MIT_license.svg" height="30" alt="MIT License">
+    </a>
+    <a href="https://pypi.org/project/PokerBots/" target="_blank">
+        <img src="https://raw.githubusercontent.com/Skripkon/PokerBots/0cd3625896bcd55100b42af3df5d8288f9c446a4/PokerBots/images/coverage.svg" height="30" alt="MIT License">
     </a>
 </div>
 
