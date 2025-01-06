@@ -62,14 +62,14 @@ from pokerkit import State
 
 class MyOwnBot(BasePlayer):
 
-    def play(self, valid_actions: dict, state: State) -> tuple[str, float]:
+    def play(self, valid_actions: dict[str], state: State) -> tuple[str, float]:
         """
         Implement a strategy to choose an action.
         """
         pass
 ```
 
-> [!NOTE]  
+> [!NOTE]
 > ```valid_actions``` is a dictionary. Keys represent valid actions, and values represent the valid amount of chips. If all actions are valid, it will look like this:
 
 ```python

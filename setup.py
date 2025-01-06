@@ -25,7 +25,7 @@ setup(
     # Name of the package
     name='PokerBots',
     packages=find_packages('.'),
-    version='2.0.3',
+    version='2.0.6',
     license='MIT',
     description='A Pure Python library to test your Poker Bots in a trivial and simple way.',
     long_description=long_description,
